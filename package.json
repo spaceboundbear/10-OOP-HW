@@ -1,0 +1,28 @@
+{
+  "name": "10-oop-hw",
+  "version": "1.0.0",
+  "description": "Week 10 HW",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spaceboundbear/10-OOP-HW.git"
+  },
+  "author": "spaceboundbear",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/spaceboundbear/10-OOP-HW/issues"
+  },
+  "homepage": "https://github.com/spaceboundbear/10-OOP-HW#readme",
+  "dependencies": {
+    "inquirer": "^8.1.5",
+    "jest": "^27.2.4"
+  },
+  "devDependencies": {}
+}
