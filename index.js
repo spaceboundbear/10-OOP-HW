@@ -6,7 +6,9 @@ const path = require('path');
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-const output = path.resolve(__dirname, 'output', 'output.html');
+const output = path.resolve(__dirname, 'dist', 'output.html');
+
+const render = require('./lib/renderHTML');
 
 const emp = [];
 
@@ -36,7 +38,7 @@ function init() {
     ])
     .then((answers) => {
       let { name, id, email, number } = answers;
-      let manager = Manager(name, id, email, number);
+      let manager = new Manager(name, id, email, number);
       emp.push(manager);
       console.info('Successfully Added Manager!');
       addTeam();
@@ -98,8 +100,8 @@ function addEngineer() {
       },
     ])
     .then((answers) => {
-      var { name, id, email, github } = answers;
-      var engineer = Engineer(name, id, email, github);
+      let { name, id, email, github } = answers;
+      let engineer = new Engineer(name, id, email, github);
       emp.push(engineer);
       console.info('Successfully Added Engineer!');
       addTeam();
@@ -131,8 +133,8 @@ function addIntern() {
       },
     ])
     .then((answers) => {
-      var { name, id, email, school } = answers;
-      var intern = Intern(name, id, email, school);
+      let { name, id, email, school } = answers;
+      let intern = new Intern(name, id, email, school);
       emp.push(intern);
       console.info('Successfully Added Intern!');
       addTeam();
@@ -140,7 +142,7 @@ function addIntern() {
 }
 
 function makeTeam() {
-  fs.writeFileSync(output, renderMain(emp), 'utf-8');
+  fs.writeFileSync(output, render(emp), 'utf-8');
 }
 
 init();
