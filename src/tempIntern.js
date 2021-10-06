@@ -1,10 +1,10 @@
 // initial file structure
-function cEngineer(data) {
+function cIntern(data) {
   return `
         <div class="card" style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title">${data.name}</h5>
-            <h6>Engineer</h6>
+            <h6>Intern</h6>
             <p class="card-text">ID: ${data.id}</p>
             <p class="card-text">Email: <a href="mailto:${data.email}">${data.email}</a></p>
             <p class="card-text">Schoool: ${data.school}</a></p>
@@ -12,4 +12,4 @@ function cEngineer(data) {
         </div>`;
 }
 
-module.exports = cEngineer;
+module.exports = cIntern;
