@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+function renderHTML(data) {
+  return `<!DOCTYPE html>
   <html lang="en">
     <head>
       <meta charset="UTF-8" />
@@ -20,16 +21,7 @@
   </div>
 </div>
 <div class="container">
-    <div>
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">OU</h5>
-        <h6>Manager</h6>
-        <p class="card-text">ID: 6969</p>
-        <p class="card-text">Email: <a href="mailto:420man@blazeit.com">420man@blazeit.com</a></p>
-        <p class="card-text">Office Number: 42069</p>
-      </div>
-    </div></div>
+    <div>${data}</div>
     </div>
     </body>
     <script
@@ -37,4 +29,7 @@
       integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
       crossorigin="anonymous"
     ></script>
-  </html>
+  </html>`;
+}
+
+module.exports = renderHTML;

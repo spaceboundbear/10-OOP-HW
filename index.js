@@ -1,6 +1,7 @@
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const renderHTML = require('./src/renderHTML');
 
 const path = require('path');
 const inquirer = require('inquirer');
@@ -8,42 +9,49 @@ const fs = require('fs');
 
 const output = path.resolve(__dirname, 'dist', 'output.html');
 
-const render = require('./lib/renderHTML');
-
 const emp = [];
 
-function init() {
+const cIntern = require('./src/tempIntern');
+const cEngineer = require('./src/tempEngineer');
+const cManager = require('./src/tempManager');
+
+const start = () => {
   inquirer
     .prompt([
       {
         type: 'input',
-        name: 'name',
+        name: 'mName',
         message: 'Enter Manager Name: ',
       },
       {
         type: 'input',
-        name: 'id',
+        name: 'mID',
         message: 'Enter Manager ID: ',
       },
       {
         type: 'input',
-        name: 'email',
+        name: 'mEmail',
         message: 'Enter Manager Email: ',
       },
       {
         type: 'input',
-        name: 'number',
+        name: 'mNumber',
         message: 'Enter Manager Office Number',
       },
     ])
-    .then((answers) => {
-      let { name, id, email, number } = answers;
-      let manager = new Manager(name, id, email, number);
-      emp.push(manager);
+    .then((response) => {
+      const manager = new Manager(
+        response.mName,
+        response.mID,
+        response.mEmail,
+        response.mNumber
+      );
+      const mTemplate = cManager(manager);
+      emp.push(mTemplate);
       console.info('Successfully Added Manager!');
       addTeam();
     });
-}
+};
 
 function addTeam() {
   inquirer
@@ -80,29 +88,34 @@ function addEngineer() {
     .prompt([
       {
         type: 'input',
-        name: 'name',
+        name: 'engName',
         message: 'Enter Engineer Name: ',
       },
       {
         type: 'input',
-        name: 'id',
+        name: 'engID',
         message: 'Enter Engineer ID: ',
       },
       {
         type: 'input',
-        name: 'email',
+        name: 'engEmail',
         message: 'Enter Engineer Email: ',
       },
       {
         type: 'input',
-        name: 'github',
+        name: 'engGithub',
         message: 'Enter Engineer Github Username',
       },
     ])
-    .then((answers) => {
-      let { name, id, email, github } = answers;
-      let engineer = new Engineer(name, id, email, github);
-      emp.push(engineer);
+    .then((response) => {
+      const engineer = new Engineer(
+        response.engName,
+        response.engID,
+        response.engEmail,
+        response.engGithub
+      );
+      const engTemplate = cEngineer(engineer);
+      emp.push(engTemplate);
       console.info('Successfully Added Engineer!');
       addTeam();
     });
@@ -113,36 +126,42 @@ function addIntern() {
     .prompt([
       {
         type: 'input',
-        name: 'name',
+        name: 'intName',
         message: 'Enter Intern Name: ',
       },
       {
         type: 'input',
-        name: 'id',
+        name: 'intID',
         message: 'Enter Intern ID: ',
       },
       {
         type: 'input',
-        name: 'email',
+        name: 'intEmail',
         message: 'Enter Intern Email: ',
       },
       {
         type: 'input',
-        name: 'school',
+        name: 'intSchool',
         message: 'Enter Intern School Name: ',
       },
     ])
-    .then((answers) => {
-      let { name, id, email, school } = answers;
-      let intern = new Intern(name, id, email, school);
-      emp.push(intern);
+    .then((response) => {
+      const intern = new Intern(
+        response.intName,
+        response.intID,
+        response.intEmail,
+        response.intSchool
+      );
+      const intTemplate = cIntern(intern);
+      emp.push(intTemplate);
       console.info('Successfully Added Intern!');
       addTeam();
     });
 }
 
 function makeTeam() {
-  fs.writeFileSync(output, render(emp), 'utf-8');
+  const endTeam = emp.join('');
+  fs.writeFileSync(output, renderHTML(endTeam), 'utf-8');
 }
 
-init();
+start();

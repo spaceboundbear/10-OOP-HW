@@ -22,7 +22,8 @@
   "homepage": "https://github.com/spaceboundbear/10-OOP-HW#readme",
   "dependencies": {
     "inquirer": "^8.1.5",
-    "jest": "^27.2.4"
+    "jest": "^27.2.4",
+    "path": "^0.12.7"
   },
   "devDependencies": {}
 }
