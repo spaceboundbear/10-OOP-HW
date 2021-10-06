@@ -1,5 +1,6 @@
 function renderHTML(data) {
-  return `<!DOCTYPE html>
+  return `
+  <!DOCTYPE html>
   <html lang="en">
     <head>
       <meta charset="UTF-8" />
@@ -21,7 +22,9 @@ function renderHTML(data) {
   </div>
 </div>
 <div class="container">
-    <div>${data}</div>
+  <div class="row">
+    ${data}</div>
+    </div>
     </div>
     </body>
     <script

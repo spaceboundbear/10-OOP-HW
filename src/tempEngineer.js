@@ -1,7 +1,7 @@
 // initial file structure
 function cEngineer(data) {
   return `
-      <div class="card" style="width: 18rem;">
+      <div class="card col-sm4">
         <div class="card-body">
           <h5 class="card-title">${data.name}</h5>
           <h6>Engineer</h6>
